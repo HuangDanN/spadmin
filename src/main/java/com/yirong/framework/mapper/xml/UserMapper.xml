@@ -3,4 +3,36 @@
 
 <mapper namespace="com.yirong.framework.mapper.UserMapper">
 
+    <resultMap id="BaseResultMap" type="com.yirong.framework.entities.User">
+        <id property="userId" column="USER_ID" jdbcType="NUMERIC" />
+        <result property="userType" column="USER_TYPE" jdbcType="INTEGER" />
+        <result property="loginname" column="LOGINNAME" jdbcType="VARCHAR" />
+        <result property="password" column="PASSWORD" jdbcType="VARCHAR" />
+        <result property="realname" column="REALNAME" jdbcType="VARCHAR" />
+        <result property="mobile" column="MOBILE" jdbcType="VARCHAR" />
+        <result property="sex" column="SEX" jdbcType="INTEGER" />
+        <result property="address" column="ADDRESS" jdbcType="VARCHAR" />
+        <result property="isEnable" column="IS_ENABLE" jdbcType="INTEGER" />
+        <result property="isExpire" column="IS_EXPIRE" jdbcType="INTEGER" />
+        <result property="isPasswordExpire" column="IS_PASSWORD_EXPIRE" jdbcType="INTEGER" />
+        <result property="isLock" column="IS_LOCK" jdbcType="INTEGER" />
+        <result property="createDate" column="CREATE_DATE" jdbcType="TIMESTAMP" />
+        <result property="updateDate" column="UPDATE_DATE" jdbcType="TIMESTAMP" />
+        <result property="note" column="NOTE" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        <![CDATA[
+		USER_ID,USER_TYPE,LOGINNAME,PASSWORD,REALNAME,MOBILE,SEX,ADDRESS,IS_ENABLE,IS_EXPIRE,IS_PASSWORD_EXPIRE,IS_LOCK,CREATE_DATE,UPDATE_DATE,NOTE
+	    ]]>
+    </sql>
+
+    <select id="selectByUsername" resultMap="FullResultMap"
+            parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List" />
+        from tsys_user
+        WHERE LOGINNAME = #{loginname,jdbcType=VARCHAR} and ndelete=0
+    </select>
+
 </mapper>

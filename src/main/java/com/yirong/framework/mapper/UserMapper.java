@@ -10,4 +10,5 @@ import com.yirong.framework.entity.User;
  **/
 public interface UserMapper extends BaseMapper<User> {
 
+	User selectByUsername(String loginname);
 }

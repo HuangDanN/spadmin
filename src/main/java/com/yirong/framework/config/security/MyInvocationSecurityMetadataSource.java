@@ -9,6 +9,8 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
+import com.yirong.framework.config.security.entity.AuthMetaData;
+import com.yirong.framework.config.security.service.IAuthMetaDataService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +22,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 
 import com.xiaoleilu.hutool.util.StrUtil;
-import com.yirong.framework.config.security.service.IAuthMetaDTOService;
-import com.yirong.framework.dto.AuthMetaDTO;
 
 /**
  * 
@@ -38,7 +38,7 @@ public class MyInvocationSecurityMetadataSource implements
 	private static final Logger logger = LoggerFactory.getLogger(MyInvocationSecurityMetadataSource.class);
 	
 	@Autowired
-	private IAuthMetaDTOService authMetaDTOService;
+	private IAuthMetaDataService authMetaDataService;
 	
 	private AntPathMatcher urlMatcher = new AntPathMatcher();
 	
@@ -61,9 +61,9 @@ public class MyInvocationSecurityMetadataSource implements
 		logger.info("---------------开始加载 权限信息--------------------");
 		resourceMap = new HashMap<String, Collection<ConfigAttribute>>();
 		authMap = new HashMap<String, Collection<String>>();
-		List<AuthMetaDTO> amList = authMetaDTOService.ListAuthMetaDTO();
+		List<AuthMetaData> amList = authMetaDataService.ListAuthMetaData();
 		
-		for(AuthMetaDTO data:amList){
+		for(AuthMetaData data:amList){
 			Collection<String> roleList=authMap.get(data.getAuthCode());
 			if (roleList == null || roleList.size() <= 0) {
 				roleList = new ArrayList<String>();

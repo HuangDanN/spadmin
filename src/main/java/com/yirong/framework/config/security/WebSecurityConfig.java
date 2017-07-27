@@ -36,7 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private MyFilterSecurityInterceptor filterSecurityInterceptor;
 	
 	@Autowired
-	private DaoUserDetailService userDetailService;
+	private MyUserDetailService userDetailService;
 	
 	@Override
 	public void configure(WebSecurity web)throws Exception{

@@ -10,28 +10,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 
 @WebServlet
-@ConfigurationProperties(prefix="system.path")
 public class LoadConfigBaseServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 3150775186972209295L;
 
 	private static final Logger logger = LoggerFactory.getLogger(LoadConfigBaseServlet.class);
 	
-	@Value("web")
 	private String webPath;
-	@Value("admin")
 	private String adminPath;
-	@Value("common")
 	private String commonPath;
-	@Value("js")
 	private String jsPath;
-	@Value("css")
 	private String cssPath;
-	@Value("image")
 	private String imagePath;
-	@Value("upload")
 	private String uploadPath;
 	
 	/**
