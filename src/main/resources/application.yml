@@ -4,3 +4,15 @@ datasource:
     username: root
     password: root
     driverClassName: com.mysql.jdbc.Driver
+    
+    
+####系统参数配置######
+system:
+	path:
+		web: /
+		admin: /admin
+		common: /common
+		js: /admin/js
+		css: /admin/css
+		image: /admin/image
+		upload: /upload
