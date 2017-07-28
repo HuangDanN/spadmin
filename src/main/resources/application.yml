@@ -1,18 +1,36 @@
-####数据库配置信息#######
+###################  数据库配置  ###################
 datasource:
     url: jdbc:mysql://localhost:3306/spadmin?&useSSL=false
     username: root
     password: root
     driverClassName: com.mysql.jdbc.Driver
     
-    
-####系统参数配置######
+###################  系统参数配置  ###################    
 system:
-	path:
-		web: /
-		admin: /admin
-		common: /common
-		js: /admin/js
-		css: /admin/css
-		image: /admin/image
-		upload: /upload
+	web-path: /
+	admin-path: /admin
+	common-path: /common
+	js-path: /admin/js
+	css-path: /admin/css
+	image-path: /admin/image
+	upload-path: /upload
+
+###################  项目启动端口  ###################
+server:
+  port: 80
+
+
+###################  beetl配置  ###################
+beetl:
+	template-path: /WEB-INF/template
+	delimiter-statement-start: \@   #开始结束标签(yaml不允许@开头)
+  	delimiter-statement-end: null
+	resource-tagsuffix: tag
+  	resource-auto-check: true #是否检测文件变化,开发用true合适，但线上要改为false
+  	
+###################  spring配置  ###################
+spring:
+	mvc:
+    static-path-pattern: /resources/**
+    view:
+      prefix: /WEB-INF/template

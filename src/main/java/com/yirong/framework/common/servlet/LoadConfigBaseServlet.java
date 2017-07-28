@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.yirong.framework.common.system.SystemParaUtil;
 
 @WebServlet
 public class LoadConfigBaseServlet extends HttpServlet {
@@ -19,13 +19,8 @@ public class LoadConfigBaseServlet extends HttpServlet {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoadConfigBaseServlet.class);
 	
-	private String webPath;
-	private String adminPath;
-	private String commonPath;
-	private String jsPath;
-	private String cssPath;
-	private String imagePath;
-	private String uploadPath;
+	@Autowired
+	private SystemParaUtil systemParaUtil;
 	
 	/**
 	 * 初始化加载系统配置信息
@@ -44,13 +39,13 @@ public class LoadConfigBaseServlet extends HttpServlet {
             	path="";
             }
             application.setAttribute("ctxPath", path);
-            application.setAttribute("adminPath", path + adminPath);
-            application.setAttribute("commonPath", path + commonPath);
-            application.setAttribute("webPath", path + webPath);
-            application.setAttribute("jsPath", path + jsPath);
-            application.setAttribute("cssPath", path + cssPath);
-            application.setAttribute("imagePath", path + imagePath);
-            application.setAttribute("uploadPath", path + uploadPath);
+            application.setAttribute("adminPath", path + systemParaUtil.getAdminPath());
+            application.setAttribute("commonPath", path + systemParaUtil.getCommonPath());
+            application.setAttribute("webPath", path + systemParaUtil.getWebPath());
+            application.setAttribute("jsPath", path + systemParaUtil.getJsPath());
+            application.setAttribute("cssPath", path + systemParaUtil.getCssPath());
+            application.setAttribute("imagePath", path + systemParaUtil.getImagePath());
+            application.setAttribute("uploadPath", path + systemParaUtil.getUploadPath());
 		 }catch (Exception e) {
             e.printStackTrace();
             logger.error("Loading config files failed.", e);
