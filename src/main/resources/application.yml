@@ -1,19 +1,19 @@
 ###################  数据库配置  ###################
 datasource:
-    url: jdbc:mysql://localhost:3306/spadmin?&useSSL=false
-    username: root
-    password: root
-    driverClassName: com.mysql.jdbc.Driver
+  url: jdbc:mysql://localhost:3306/test?&useSSL=false
+  username: root
+  password: root
+  driverClassName: com.mysql.jdbc.Driver
     
 ###################  系统参数配置  ###################    
 system:
-	web-path: /
-	admin-path: /admin
-	common-path: /common
-	js-path: /admin/js
-	css-path: /admin/css
-	image-path: /admin/image
-	upload-path: /upload
+  web-path: /
+  admin-path: /admin
+  common-path: /common
+  js-path: /admin/js
+  css-path: /admin/css
+  image-path: /admin/image
+  upload-path: /upload
 
 ###################  项目启动端口  ###################
 server:
@@ -22,15 +22,15 @@ server:
 
 ###################  beetl配置  ###################
 beetl:
-	template-path: /WEB-INF/template
-	delimiter-statement-start: \@   #开始结束标签(yaml不允许@开头)
-  	delimiter-statement-end: null
-	resource-tagsuffix: tag
-  	resource-auto-check: true #是否检测文件变化,开发用true合适，但线上要改为false
-  	
+  template-path: /WEB-INF/template
+  delimiter-statement-start: \@   #开始结束标签(yaml不允许@开头)
+  delimiter-statement-end: null
+  resource-tagsuffix: tag
+  resource-auto-check: true #是否检测文件变化,开发用true合适，但线上要改为false
+
 ###################  spring配置  ###################
 spring:
-	mvc:
+  mvc:
     static-path-pattern: /resources/**
-    view:
-      prefix: /WEB-INF/template
+  view:
+    prefix: /WEB-INF/template

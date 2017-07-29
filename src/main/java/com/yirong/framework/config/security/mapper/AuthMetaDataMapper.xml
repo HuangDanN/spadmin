@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yirong.framework.config.security.mapper.AuthMetaDataMapper">
+
+	<select id="ListAuthMetaData" resultType="com.yirong.framework.config.security.entity.AuthMetaData">
+		SELECT
+			ra.AUTH_ID authId,
+			a.AUTH_CODE authCode,
+			r.ROLE_CODE roleCode,
+			res.URL url
+		FROM
+			tsys_resources res,
+			tsys_role r,
+			tsys_role_authority ra,
+			tsys_authority a
+		WHERE
+			res.AUTH_ID = ra.AUTH_ID
+		AND r.ROLE_ID = ra.ROLE_ID
+		AND a.AUTH_ID =ra.AUTH_ID
+		AND a.IS_ENABLE = 1
+		ORDER BY res.URL
+	</select>
+	
+</mapper>

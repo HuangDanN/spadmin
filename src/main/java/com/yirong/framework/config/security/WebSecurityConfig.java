@@ -66,6 +66,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.httpBasic()
 			.and()
+			.exceptionHandling().accessDeniedPage("/error/noright")
+			.and()
 			.authenticationProvider(authenticationProvider);
 //			.addFilterBefore()
 		http.addFilterBefore(filterSecurityInterceptor, FilterSecurityInterceptor.class)

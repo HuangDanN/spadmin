@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.AbstractResourceBasedMessageSource;
@@ -29,10 +30,13 @@ import com.yirong.framework.common.CommonConstant;
 @Configuration
 public class SecurityBeanConfig {
 
+	@Autowired
+	private MyUserDetailService userDetailService;
+
 	@Bean
 	public AuthenticationProvider authenticationProvider(){
 		DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-		daoAuthenticationProvider.setUserDetailsService(null);
+		daoAuthenticationProvider.setUserDetailsService(userDetailService);
 		daoAuthenticationProvider.setHideUserNotFoundExceptions(false);
 		AbstractResourceBasedMessageSource messageSource = new ReloadableResourceBundleMessageSource();
 		messageSource.setBasename("classpath:ValidationMessages");

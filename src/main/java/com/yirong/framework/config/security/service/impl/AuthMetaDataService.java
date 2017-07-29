@@ -2,6 +2,8 @@ package com.yirong.framework.config.security.service.impl;
 
 import java.util.List;
 
+import com.yirong.framework.config.security.entity.AuthMetaData;
+import com.yirong.framework.config.security.mapper.AuthMetaDataMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

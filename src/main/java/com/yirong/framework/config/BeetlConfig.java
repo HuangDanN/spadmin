@@ -35,7 +35,7 @@ public class BeetlConfig {
 	
     private String resourceAutoCheck;
 	
-	@Bean(initMethod = "init", name = "beetlConfig")
+	@Bean(initMethod = "init")
 	public BeetlGroupUtilConfiguration getBeetlGroupUtilConfiguration() {
 		BeetlGroupUtilConfiguration beetlGroupUtilConfiguration = new BeetlGroupUtilConfiguration();
 		try {
@@ -48,13 +48,12 @@ public class BeetlConfig {
 		}
 	}
 	
-	@Bean(name = "beetlViewResolver")
-    public BeetlSpringViewResolver getBeetlSpringViewResolver(@Qualifier("beetlConfig") 
-    	BeetlGroupUtilConfiguration beetlGroupUtilConfiguration) {
+	@Bean
+    public BeetlSpringViewResolver getBeetlSpringViewResolver() {
         BeetlSpringViewResolver beetlSpringViewResolver = new BeetlSpringViewResolver();
         beetlSpringViewResolver.setContentType("text/html;charset=UTF-8");
         beetlSpringViewResolver.setOrder(0);
-        beetlSpringViewResolver.setConfig(beetlGroupUtilConfiguration);
+        beetlSpringViewResolver.setConfig(getBeetlGroupUtilConfiguration());
         return beetlSpringViewResolver;
     }
 	
