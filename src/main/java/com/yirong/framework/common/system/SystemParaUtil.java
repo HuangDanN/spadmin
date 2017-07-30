@@ -57,4 +57,31 @@ public class SystemParaUtil {
 		return uploadPath;
 	}
 
+	public void setWebPath(String webPath) {
+		this.webPath = webPath;
+	}
+
+	public void setAdminPath(String adminPath) {
+		this.adminPath = adminPath;
+	}
+
+	public void setCommonPath(String commonPath) {
+		this.commonPath = commonPath;
+	}
+
+	public void setJsPath(String jsPath) {
+		this.jsPath = jsPath;
+	}
+
+	public void setCssPath(String cssPath) {
+		this.cssPath = cssPath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+	public void setUploadPath(String uploadPath) {
+		this.uploadPath = uploadPath;
+	}
 }

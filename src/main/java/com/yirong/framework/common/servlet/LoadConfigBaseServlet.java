@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.yirong.framework.common.system.SystemParaUtil;
 
-@WebServlet
+@WebServlet(loadOnStartup = 1)
 public class LoadConfigBaseServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 3150775186972209295L;
@@ -28,10 +28,11 @@ public class LoadConfigBaseServlet extends HttpServlet {
 	@Override
 	public void init(ServletConfig conf) throws ServletException {
 		 try {
-			logger.info("Loading config files.");
+			logger.info("Loading config files............");
+			super.init(conf);
 			ServletContext application = this.getServletContext();
             String appPath = application.getRealPath("/");
-            logger.info("appPath..." + appPath);
+            logger.info("appPath............." + appPath);
 
             // 把工程路径存入上下文、方便页面调用
             String path = application.getContextPath();

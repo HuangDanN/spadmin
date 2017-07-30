@@ -15,6 +15,7 @@ import org.springframework.security.access.intercept.AbstractSecurityInterceptor
 import org.springframework.security.access.intercept.InterceptorStatusToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.web.FilterInvocation;
+import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.stereotype.Component;
 
 /**
@@ -25,19 +26,10 @@ import org.springframework.stereotype.Component;
 * @date 2017年7月27日 下午1:52:14  
 *
  */
-@Component
 public class MyFilterSecurityInterceptor extends AbstractSecurityInterceptor implements Filter {
 
-	@Autowired
-	private AuthenticationManager authenticationManager;
-	
-	@Autowired
-	private MyAccessDecisionManager accessDecisionManager;
-	
-	@Autowired
-	private MyInvocationSecurityMetadataSource securityMetadataSource;
-	
-	
+	private FilterInvocationSecurityMetadataSource securityMetadataSource;
+
 	@Override
 	public Class<?> getSecureObjectClass() {
 		// TODO Auto-generated method stub
@@ -52,9 +44,6 @@ public class MyFilterSecurityInterceptor extends AbstractSecurityInterceptor imp
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		// TODO Auto-generated method stub
-		super.setAccessDecisionManager(accessDecisionManager);
-		super.setAuthenticationManager(authenticationManager);
 	}
 
 	@Override
@@ -79,4 +68,11 @@ public class MyFilterSecurityInterceptor extends AbstractSecurityInterceptor imp
         }
     }
 
+	public FilterInvocationSecurityMetadataSource getSecurityMetadataSource() {
+		return securityMetadataSource;
+	}
+
+	public void setSecurityMetadataSource(FilterInvocationSecurityMetadataSource securityMetadataSource) {
+		this.securityMetadataSource = securityMetadataSource;
+	}
 }

@@ -1,10 +1,20 @@
-###################  数据库配置  ###################
-datasource:
-  url: jdbc:mysql://localhost:3306/test?&useSSL=false
-  username: root
-  password: root
-  driverClassName: com.mysql.jdbc.Driver
-    
+###################  mysql数据库配置  ###################
+mysql:
+  datasource:
+    url: jdbc:mysql://localhost:3306/test?&useSSL=false
+    username: root
+    password: root
+    driver-className: com.mysql.jdbc.Driver
+
+###################  oracle数据库配置  ###################
+oracle:
+  datasource:
+    url: jdbc:oracle:thin:@//localhost:1521/orcl
+    username: huang
+    password: huang
+    driverClassName: oracle.jdbc.driver.OracleDriver
+
+
 ###################  系统参数配置  ###################    
 system:
   web-path: /

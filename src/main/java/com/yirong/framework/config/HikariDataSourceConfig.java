@@ -3,6 +3,7 @@ package com.yirong.framework.config;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -17,16 +18,16 @@ import javax.sql.DataSource;
 @Configuration
 public class HikariDataSourceConfig {
 
-	@Value("${datasource.driverClassName}")
+	@Value("${oracle.datasource.driverClassName}")
 	private String driverClassName;
 
-	@Value("${datasource.url}")
+	@Value("${oracle.datasource.url}")
 	private String jdbcurl;
 
-	@Value("${datasource.username}")
+	@Value("${oracle.datasource.username}")
 	private String username;
 
-	@Value("${datasource.password}")
+	@Value("${oracle.datasource.password}")
 	private String password;
 
 	/**
@@ -46,7 +47,7 @@ public class HikariDataSourceConfig {
 		hikariConfig.setPassword(password);
 
 		hikariConfig.setMaximumPoolSize(5);
-		hikariConfig.setConnectionTestQuery("SELECT 1");
+		hikariConfig.setConnectionTestQuery("SELECT 1 from dual");
 		hikariConfig.setPoolName("springHikariCP");
 
 		hikariConfig.addDataSourceProperty("dataSource.cachePrepStmts", "true");

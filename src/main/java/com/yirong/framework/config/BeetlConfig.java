@@ -76,4 +76,44 @@ public class BeetlConfig {
 		}
 		return properties;
    }
+
+	public String getTemplatePath() {
+		return templatePath;
+	}
+
+	public void setTemplatePath(String templatePath) {
+		this.templatePath = templatePath;
+	}
+
+	public String getDelimiterStatementStart() {
+		return delimiterStatementStart;
+	}
+
+	public void setDelimiterStatementStart(String delimiterStatementStart) {
+		this.delimiterStatementStart = delimiterStatementStart;
+	}
+
+	public String getDelimiterStatementEnd() {
+		return delimiterStatementEnd;
+	}
+
+	public void setDelimiterStatementEnd(String delimiterStatementEnd) {
+		this.delimiterStatementEnd = delimiterStatementEnd;
+	}
+
+	public String getResourceTagsuffix() {
+		return resourceTagsuffix;
+	}
+
+	public void setResourceTagsuffix(String resourceTagsuffix) {
+		this.resourceTagsuffix = resourceTagsuffix;
+	}
+
+	public String getResourceAutoCheck() {
+		return resourceAutoCheck;
+	}
+
+	public void setResourceAutoCheck(String resourceAutoCheck) {
+		this.resourceAutoCheck = resourceAutoCheck;
+	}
 }

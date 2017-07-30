@@ -7,8 +7,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.AbstractResourceBasedMessageSource;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.core.annotation.Order;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -27,21 +35,31 @@ import com.yirong.framework.common.CommonConstant;
  **/
 @Configuration
 @EnableWebSecurity
+@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private AuthenticationProvider authenticationProvider;
-	
-	@Autowired
-	private MyFilterSecurityInterceptor filterSecurityInterceptor;
-	
+
 	@Autowired
 	private MyUserDetailService userDetailService;
-	
+
+	@Autowired
+	private AuthenticationManager authenticationManager;
+
+	@Autowired
+	private MyInvocationSecurityMetadataSource SecurityMetadataSource;
+
+	@Autowired
+	private MyAccessDecisionManager accessDecisionManager;
+
 	@Override
 	public void configure(WebSecurity web)throws Exception{
 		web.ignoring()
 				.antMatchers("/resources/**");    //资源无需验证权限
+	}
+
+	protected void configure(AuthenticationManagerBuilder auth)
+			throws Exception {
+		auth.userDetailsService(userDetailService);
 	}
 
 	@Override
@@ -68,10 +86,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.exceptionHandling().accessDeniedPage("/error/noright")
 			.and()
-			.authenticationProvider(authenticationProvider);
+			.authenticationProvider(authenticationProvider());
 //			.addFilterBefore()
-		http.addFilterBefore(filterSecurityInterceptor, FilterSecurityInterceptor.class)
-			.userDetailsService(userDetailService);
+		http.addFilterBefore(filterSecurityInterceptor(), FilterSecurityInterceptor.class);
 	}
 
 	/**
@@ -89,6 +106,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			request.getSession().setAttribute(CommonConstant.SESSION_USER_NAME, username);
 			super.onAuthenticationSuccess(request, response, authentication);
 		}
+	}
+
+	@Bean
+	public MyFilterSecurityInterceptor filterSecurityInterceptor(){
+		MyFilterSecurityInterceptor filterSecurityInterceptor = new MyFilterSecurityInterceptor();
+		filterSecurityInterceptor.setSecurityMetadataSource(SecurityMetadataSource);
+		filterSecurityInterceptor.setAccessDecisionManager(accessDecisionManager);
+		filterSecurityInterceptor.setAuthenticationManager(authenticationManager);
+		return filterSecurityInterceptor;
+	}
+
+	@Bean
+	public AuthenticationProvider authenticationProvider(){
+		DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+		daoAuthenticationProvider.setUserDetailsService(userDetailService);
+		daoAuthenticationProvider.setHideUserNotFoundExceptions(false);
+		AbstractResourceBasedMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+		messageSource.setBasename("classpath:ValidationMessages");
+		messageSource.setDefaultEncoding("UTF-8");
+		daoAuthenticationProvider.setMessageSource(messageSource);
+		return daoAuthenticationProvider;
 	}
 	
 }

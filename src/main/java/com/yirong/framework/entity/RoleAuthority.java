@@ -57,7 +57,7 @@ public class RoleAuthority implements Serializable {
 
 	@Override
 	public String toString() {
-		return "RoleAuthority{" +
+		return "RoleAuthorityMapper{" +
 				"id=" + id +
 				", roleId=" + roleId +
 				", authId=" + authId +
