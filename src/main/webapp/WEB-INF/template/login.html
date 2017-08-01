@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>登录页</title>
+	<link rel="stylesheet" href="${commonPath}/layui/css/layui.css?v=1.0.9" media="all" />
+	<link rel="stylesheet" href="${cssPath}/css/login.css" />
+</head>
+<body>
+	<body class="beg-login-bg">
+		<div class="beg-login-box">
+			<header>
+				<h1>后台登录</h1>
+			</header>
+			<div class="beg-login-main">
+				<form action="/manage/login" class="layui-form" method="post">
+					<div class="layui-form-item">
+						<label class="beg-login-icon">
+	                        <i class="layui-icon">&#xe612;</i>
+	                    </label>
+						<input type="text" name="userName" required lay-verify="required" autocomplete="off" placeholder="这里输入登录名" class="layui-input">
+					</div>
+					<div class="layui-form-item">
+						<label class="beg-login-icon">
+	                        <i class="layui-icon">&#xe642;</i>
+	                    </label>
+						<input type="password" name="password" required lay-verify="required" autocomplete="off" placeholder="这里输入密码" class="layui-input">
+					</div>
+					<div class="layui-form-item">
+						<label class="beg-login-icon">
+	                        <i class="layui-icon">&#xe620;</i>
+	                    </label>
+						<input type="text" name="captcha" required lay-verify="required" autocomplete="off" placeholder="这里输入验证码" class="layui-input beg-login-captcha">
+						<img src="" class="captcha-img">
+					</div>
+					<div class="layui-form-item">
+						<div class="beg-pull-left beg-login-remember">
+							<label>记住帐号？</label>
+							<input type="checkbox" name="rememberMe" value="true" lay-skin="switch" checked title="记住帐号">
+						</div>
+						<div class="beg-pull-right">
+							<button class="layui-btn layui-btn-primary" lay-submit lay-filter="login">
+                            <i class="layui-icon">&#xe650;</i> 登录
+                        </button>
+						</div>
+						<div class="beg-clear"></div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<script type="text/javascript" src="plugins/layui/layui.js?v=1.0.9"></script>
+		<script>
+			layui.use(['layer', 'form'], function() {
+				var layer = layui.layer,
+					$ = layui.jquery,
+					form = layui.form();
+					
+				form.on('submit(login)',function(data){
+					
+					location.href='index.html';
+					return false;
+				});
+			});
+		</script>
+	</body>
+</body>
+</html>
+
+	
