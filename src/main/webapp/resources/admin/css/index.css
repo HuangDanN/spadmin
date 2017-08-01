@@ -1,0 +1,15 @@
+.login{ 
+	margin-left:480px; 
+	margin-top:120px;
+}
+.input{ 
+	width:200px; 
+	height:21px; 
+	margin-bottom:5px;
+	border:1px solid #1c827c;
+	color:#999999
+		}
+
+.logo{
+	margin-bottom:-10px;
+}
