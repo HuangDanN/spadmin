@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>管理登录</title>
+    <link href="${ctxPath}/resources/admin/css/login.css" rel="stylesheet" type="text/css" />
+    @include("/common/include.html"){}
+    <script type="text/javascript" src="${ctxPath}/resources/admin/common/js/Md5Utils.js"></script>
+    <script type="text/javascript" src="${ctxPath}/resources/admin/js/login.js"></script>
+</head>
+<body>
+<div class="login">
+    <p class="pl"></p>
+    <div class="l"></div>
+    <div class="c">
+        <form id="loginForm" action="${ctxPath}/securityLogin" method="post" name="myform">
+            <div class="to">
+                <span class="tol"><a class="v" href="/" target="_blank"></a></span>
+            </div>
+            <div class="in">
+                <dl>
+                    <dt>用户名</dt>
+                    <dd>
+                        <input style="width: 150px" type="text" id="username" name="username" maxlength="50" value="">
+                    </dd>
+                    <dd class=e></dd>
+                </dl>
+                <dl>
+                    <dt>密 码</dt>
+                    <dd>
+                        <input style="width: 150px" type="password" id="password" name="password" maxlength="50" value="">
+                    </dd>
+                    <dd class="e"></dd>
+                </dl>
+                <dl>
+                <dt>验证码</dt>
+                <dd>
+                    <input style="width: 80px" type="text" id="captcha" name="j_captcha" maxlength="5">
+                </dd>
+                <dd style="padding-top: 5px">
+                    <img  id="captchaImage" style="height: 40px; cursor: hand;margin-top:-5px;"
+                          onclick="this.src+=('?'+Math.random());" alt="图片看不清？点击重新得到验证码"
+                          src="${ctxPath}/jcaptcha">
+                </dd>
+                </dl>
+            </div>
+            <div class="su">
+					<span style="float:left;margin-left:80px;color:red;font-size:12px;">
+                        @if(isNotEmpty(session.SPRING_SECURITY_LAST_EXCEPTION)){
+                        @if(isNotEmpty(session.SPRING_SECURITY_LAST_EXCEPTION.message)){
+                            ${session.SPRING_SECURITY_LAST_EXCEPTION.message}
+                        @}}
+					</span>
+                <span><input type="submit" value="登录"></span>
+            </div>
+        </form>
+    </div>
+    <div class="r"></div>
+    <p class="pr"></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yirong.framework.mapper.LoginLogMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.yirong.framework.entity.LoginLog">
+		<id column="NID" property="nid" />
+		<result column="SUID" property="suid" />
+		<result column="SLOGINIP" property="sloginip" />
+		<result column="DSTART" property="dstart" />
+		<result column="DEND" property="dend" />
+		<result column="SSYS" property="ssys" />
+	</resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        NID AS nid, SUID AS suid, SLOGINIP AS sloginip, DSTART AS dstart, DEND AS dend, SSYS AS ssys
+    </sql>
+
+</mapper>

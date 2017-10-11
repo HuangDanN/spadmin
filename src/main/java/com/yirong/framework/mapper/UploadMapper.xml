@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yirong.framework.mapper.UploadMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.yirong.framework.entity.Upload">
+		<id column="ID" property="id" />
+		<result column="FILE_NAME" property="fileName" />
+		<result column="FILE_SUFFIX" property="fileSuffix" />
+		<result column="FILE_REAL_NAME" property="fileRealName" />
+		<result column="FILE_TYPE" property="fileType" />
+		<result column="FILE_SIZE" property="fileSize" />
+		<result column="FILE_PATH" property="filePath" />
+		<result column="AFFIX_PATH" property="affixPath" />
+		<result column="CREATOR" property="creator" />
+		<result column="CREATE_DATE" property="createDate" />
+		<result column="WIDTH" property="width" />
+		<result column="SAVE_WAY" property="saveWay" />
+		<result column="HEIGHT" property="height" />
+		<result column="EXT_COLUMN" property="extColumn" />
+		<result column="MARK" property="mark" />
+		<result column="FULL_URL" property="fullUrl" />
+	</resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID AS id, FILE_NAME AS fileName, FILE_SUFFIX AS fileSuffix, FILE_REAL_NAME AS fileRealName, FILE_TYPE AS fileType, FILE_SIZE AS fileSize, FILE_PATH AS filePath, AFFIX_PATH AS affixPath, CREATOR AS creator, CREATE_DATE AS createDate, WIDTH AS width, SAVE_WAY AS saveWay, HEIGHT AS height, EXT_COLUMN AS extColumn, MARK AS mark, FULL_URL AS fullUrl
+    </sql>
+
+</mapper>
