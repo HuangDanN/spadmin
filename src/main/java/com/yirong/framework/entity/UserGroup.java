@@ -1,24 +1,42 @@
 package com.yirong.framework.entity;
 
-import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
 
 /**
+ * <p>
+ * 用户与组织机构关系表
+ * </p>
+ *
  * @author xn-h
- * @describe(用户与所属组关系类)
- * @create 2017/7/22
- **/
-public class UserGroup implements Serializable {
-	private static final long serialVersionUID = 4531079347974523633L;
+ * @since 2017-10-03
+ */
+@TableName("TSYS_USER_GROUP")
+public class UserGroup extends Model<UserGroup> {
 
-	//主键ID
-	private java.lang.Long id;
-	//所属组ID
-	@NotNull
-	private java.lang.Long groupId;
-	//用户ID
-	@NotNull
-	private java.lang.Long userId;
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 用户与组织机构关系ID
+     */
+    @TableId("ID")
+	private Long id;
+    /**
+     * 组织机构ID
+     */
+	@TableField("GROUP_ID")
+	private Long groupId;
+    /**
+     * 用户ID
+     */
+	@TableField("USER_ID")
+	private Long userId;
+
 
 	public Long getId() {
 		return id;
@@ -45,11 +63,16 @@ public class UserGroup implements Serializable {
 	}
 
 	@Override
+	protected Serializable pkVal() {
+		return this.id;
+	}
+
+	@Override
 	public String toString() {
 		return "UserGroup{" +
-				"id=" + id +
-				", groupId=" + groupId +
-				", userId=" + userId +
-				'}';
+			", id=" + id +
+			", groupId=" + groupId +
+			", userId=" + userId +
+			"}";
 	}
 }

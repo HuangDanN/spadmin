@@ -1,24 +1,42 @@
 package com.yirong.framework.entity;
 
-import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
 
 /**
+ * <p>
+ * 用户角色关系表
+ * </p>
+ *
  * @author xn-h
- * @describe(用户与角色关系类)
- * @create 2017/7/22
- **/
-public class UserRole implements Serializable {
-	private static final long serialVersionUID = 6592251999128455643L;
+ * @since 2017-10-03
+ */
+@TableName("TSYS_USER_ROLE")
+public class UserRole extends Model<UserRole> {
 
-	//主键ID
-	private java.lang.Long id;
-	//用户ID
-	@NotNull
-	private java.lang.Long userId;
-	//角色ID
-	@NotNull
-	private java.lang.Long roleId;
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 用户角色关系ID
+     */
+    @TableId("ID")
+	private Long id;
+    /**
+     * 角色ID
+     */
+	@TableField("ROLE_ID")
+	private Long roleId;
+    /**
+     * 用户ID
+     */
+	@TableField("USER_ID")
+	private Long userId;
+
 
 	public Long getId() {
 		return id;
@@ -26,14 +44,6 @@ public class UserRole implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
 	}
 
 	public Long getRoleId() {
@@ -44,12 +54,25 @@ public class UserRole implements Serializable {
 		this.roleId = roleId;
 	}
 
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	@Override
+	protected Serializable pkVal() {
+		return this.id;
+	}
+
 	@Override
 	public String toString() {
 		return "UserRole{" +
-				"id=" + id +
-				", userId=" + userId +
-				", roleId=" + roleId +
-				'}';
+			", id=" + id +
+			", roleId=" + roleId +
+			", userId=" + userId +
+			"}";
 	}
 }

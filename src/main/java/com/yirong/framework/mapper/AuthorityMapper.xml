@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yirong.framework.mapper.AuthorityMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.yirong.framework.entity.Authority">
+		<id column="AUTH_ID" property="authId" />
+		<result column="MENU_ID" property="menuId" />
+		<result column="AUTH_TYPE" property="authType" />
+		<result column="AUTH_NAME" property="authName" />
+		<result column="AUTH_CODE" property="authCode" />
+		<result column="IS_ENABLE" property="isEnable" />
+		<result column="CREATE_DATE" property="createDate" />
+		<result column="UPDATE_DATE" property="updateDate" />
+		<result column="NOTE" property="note" />
+	</resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        AUTH_ID AS authId, MENU_ID AS menuId, AUTH_TYPE AS authType, AUTH_NAME AS authName, AUTH_CODE AS authCode, IS_ENABLE AS isEnable, CREATE_DATE AS createDate, UPDATE_DATE AS updateDate, NOTE AS note
+    </sql>
+
+</mapper>

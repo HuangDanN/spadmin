@@ -1,45 +1,73 @@
 package com.yirong.framework.entity;
 
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
-
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+
 import java.util.Date;
-import java.util.List;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableName;
+import java.io.Serializable;
 
 /**
+ * <p>
+ * 权限表
+ * </p>
+ *
  * @author xn-h
- * @describe(权限类)
- * @create 2017/7/22
- **/
-public class Authority implements Serializable {
-	private static final long serialVersionUID = -5262361312752809818L;
-	//权限ID
-	private java.lang.Long authId;
-	//菜单ID
-	private java.lang.Long menuId;
+ * @since 2017-10-03
+ */
+@TableName("TSYS_AUTHORITY")
+public class Authority extends Model<Authority> {
 
-	@NotNull(message = "权限类型不能为空")
-	private java.lang.Integer authType;
-	@NotEmpty(message = "权限名称不能为空")
-	@Length(max = 200)
-	private java.lang.String authName;
-	@NotEmpty(message = "权限编码不能为空")
-	@Length(max = 200)
-	private java.lang.String authCode;
-	//是否启用
-	private java.lang.Integer isEnable;
-	//创建时间
-	private java.util.Date createDate;
-	//更新时间
-	private java.util.Date updateDate;
-	@Length(max = 5000)
-	private java.lang.String note;
-	//菜单
-	private Menu menu;
-	//资源
-	private List<Resources> resources;
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 权限ID
+     */
+    @TableId("AUTH_ID")
+	private Long authId;
+    /**
+     * 菜单ID
+     */
+	@TableField("MENU_ID")
+	private Long menuId;
+    /**
+     * 权限类型  1:菜单  2:自定义URL
+     */
+	@TableField("AUTH_TYPE")
+	private Long authType;
+    /**
+     * 权限名称
+     */
+	@TableField("AUTH_NAME")
+	private String authName;
+    /**
+     * 权限编码
+     */
+	@TableField("AUTH_CODE")
+	private String authCode;
+    /**
+     * 是否启用
+     */
+	@TableField("IS_ENABLE")
+	private Long isEnable;
+    /**
+     * 创建时间
+     */
+	@TableField("CREATE_DATE")
+	private Date createDate;
+    /**
+     * 更新时间
+     */
+	@TableField("UPDATE_DATE")
+	private Date updateDate;
+    /**
+     * 备注
+     */
+	@TableField("NOTE")
+	private String note;
+
 
 	public Long getAuthId() {
 		return authId;
@@ -57,11 +85,11 @@ public class Authority implements Serializable {
 		this.menuId = menuId;
 	}
 
-	public Integer getAuthType() {
+	public Long getAuthType() {
 		return authType;
 	}
 
-	public void setAuthType(Integer authType) {
+	public void setAuthType(Long authType) {
 		this.authType = authType;
 	}
 
@@ -81,11 +109,11 @@ public class Authority implements Serializable {
 		this.authCode = authCode;
 	}
 
-	public Integer getIsEnable() {
+	public Long getIsEnable() {
 		return isEnable;
 	}
 
-	public void setIsEnable(Integer isEnable) {
+	public void setIsEnable(Long isEnable) {
 		this.isEnable = isEnable;
 	}
 
@@ -113,36 +141,23 @@ public class Authority implements Serializable {
 		this.note = note;
 	}
 
-	public Menu getMenu() {
-		return menu;
-	}
-
-	public void setMenu(Menu menu) {
-		this.menu = menu;
-	}
-
-	public List<Resources> getResources() {
-		return resources;
-	}
-
-	public void setResources(List<Resources> resources) {
-		this.resources = resources;
+	@Override
+	protected Serializable pkVal() {
+		return this.authId;
 	}
 
 	@Override
 	public String toString() {
 		return "Authority{" +
-				"authId=" + authId +
-				", menuId=" + menuId +
-				", authType=" + authType +
-				", authName='" + authName + '\'' +
-				", authCode='" + authCode + '\'' +
-				", isEnable=" + isEnable +
-				", createDate=" + createDate +
-				", updateDate=" + updateDate +
-				", note='" + note + '\'' +
-				", menu=" + menu +
-				", resources=" + resources +
-				'}';
+			", authId=" + authId +
+			", menuId=" + menuId +
+			", authType=" + authType +
+			", authName=" + authName +
+			", authCode=" + authCode +
+			", isEnable=" + isEnable +
+			", createDate=" + createDate +
+			", updateDate=" + updateDate +
+			", note=" + note +
+			"}";
 	}
 }

@@ -1,12 +1,16 @@
 package com.yirong.framework.mapper;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.yirong.framework.entity.RoleAuthority;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
+ * <p>
+  * 角色权限关系表 Mapper 接口
+ * </p>
+ *
  * @author xn-h
- * @describe(用户角色与权限关系mapper映射类)
- * @create 2017/7/23
- **/
+ * @since 2017-09-19
+ */
 public interface RoleAuthorityMapper extends BaseMapper<RoleAuthority> {
+
 }

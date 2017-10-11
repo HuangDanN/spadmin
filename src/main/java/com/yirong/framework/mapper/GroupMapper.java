@@ -1,12 +1,16 @@
 package com.yirong.framework.mapper;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.yirong.framework.entity.Group;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
+ * <p>
+  * 组织机构表 Mapper 接口
+ * </p>
+ *
  * @author xn-h
- * @describe(用户所属组mapper映射类)
- * @create 2017/7/23
- **/
+ * @since 2017-09-19
+ */
 public interface GroupMapper extends BaseMapper<Group> {
+
 }

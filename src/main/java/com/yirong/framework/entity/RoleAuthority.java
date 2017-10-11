@@ -1,27 +1,47 @@
 package com.yirong.framework.entity;
 
-import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
 
 /**
+ * <p>
+ * 角色权限关系表
+ * </p>
+ *
  * @author xn-h
- * @describe(用户角色与权限关系类)
- * @create 2017/7/22
- **/
-public class RoleAuthority implements Serializable {
-	private static final long serialVersionUID = -4792580880506952084L;
+ * @since 2017-10-03
+ */
+@TableName("TSYS_ROLE_AUTHORITY")
+public class RoleAuthority extends Model<RoleAuthority> {
 
-	//主键ID
-	private java.lang.Long id;
-	//角色ID
-	@NotNull
-	private java.lang.Long roleId;
-	//权限ID
-	@NotNull
-	private java.lang.Long authId;
-	//是否系统默认
-	@NotNull
-	private java.lang.Integer isSys;
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 角色权限关系ID
+     */
+    @TableId("ID")
+	private Long id;
+    /**
+     * 角色ID
+     */
+	@TableField("ROLE_ID")
+	private Long roleId;
+    /**
+     * 权限ID
+     */
+	@TableField("AUTH_ID")
+	private Long authId;
+    /**
+     * 若为系统内置不允许删除
+     */
+	@TableField("IS_SYS")
+	private Long isSys;
+
 
 	public Long getId() {
 		return id;
@@ -47,21 +67,26 @@ public class RoleAuthority implements Serializable {
 		this.authId = authId;
 	}
 
-	public Integer getIsSys() {
+	public Long getIsSys() {
 		return isSys;
 	}
 
-	public void setIsSys(Integer isSys) {
+	public void setIsSys(Long isSys) {
 		this.isSys = isSys;
 	}
 
 	@Override
+	protected Serializable pkVal() {
+		return this.id;
+	}
+
+	@Override
 	public String toString() {
-		return "RoleAuthorityMapper{" +
-				"id=" + id +
-				", roleId=" + roleId +
-				", authId=" + authId +
-				", isSys=" + isSys +
-				'}';
+		return "RoleAuthority{" +
+			", id=" + id +
+			", roleId=" + roleId +
+			", authId=" + authId +
+			", isSys=" + isSys +
+			"}";
 	}
 }

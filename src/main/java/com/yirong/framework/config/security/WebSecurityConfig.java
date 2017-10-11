@@ -67,20 +67,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests()
 				//无需验证权限
-				.antMatchers("/admin/login").permitAll()
+				.antMatchers("/login").permitAll()
 				//需要登录权限
-				.antMatchers("/admin/*").fullyAuthenticated()
+				.antMatchers("/admin","/admin/*").fullyAuthenticated()
 			.and()
 			.formLogin()
-				.loginPage("/admin/login")  //登录页面
-				.failureUrl("/admin/login") //失败跳转页面
-				.loginProcessingUrl("/admin/securityLogin")  //登录认证url
+				.loginPage("/login")  //登录页面
+				.failureUrl("/login") //失败跳转页面
+				.defaultSuccessUrl("/admin",true)
+				.loginProcessingUrl("/securityLogin")  //登录认证url
 				.successHandler(new MyAuthenticationSuccessHandler())   //成功处理类
 			.and()
 			.logout()
 				.invalidateHttpSession(true)   //注销session
-				.logoutSuccessUrl("/admin/login")  //注销跳转url
-				.logoutUrl("/admin/securityLogout") //注销的url
+				.logoutSuccessUrl("/login")  //注销跳转url
+				.logoutUrl("/securityLogout") //注销的url
 			.and()
 			.httpBasic()
 			.and()
@@ -89,6 +90,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.authenticationProvider(authenticationProvider());
 //			.addFilterBefore()
 		http.addFilterBefore(filterSecurityInterceptor(), FilterSecurityInterceptor.class);
+		// 关闭csrf
+		http.csrf().disable();
+
 	}
 
 	/**
@@ -123,7 +127,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		daoAuthenticationProvider.setUserDetailsService(userDetailService);
 		daoAuthenticationProvider.setHideUserNotFoundExceptions(false);
 		AbstractResourceBasedMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-		messageSource.setBasename("classpath:ValidationMessages");
+		messageSource.addBasenames("classpath:ValidationMessages","classpath:Security_Message_zh_CN");
 		messageSource.setDefaultEncoding("UTF-8");
 		daoAuthenticationProvider.setMessageSource(messageSource);
 		return daoAuthenticationProvider;

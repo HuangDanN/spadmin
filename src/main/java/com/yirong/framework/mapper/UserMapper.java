@@ -4,11 +4,13 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.yirong.framework.entity.User;
 
 /**
+ * <p>
+  * 用户表 Mapper 接口
+ * </p>
+ *
  * @author xn-h
- * @describe(用户mapper映射类)
- * @create 2017/7/23
- **/
+ * @since 2017-09-19
+ */
 public interface UserMapper extends BaseMapper<User> {
 
-	User selectByUsername(String loginname);
 }

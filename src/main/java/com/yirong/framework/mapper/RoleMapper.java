@@ -1,13 +1,19 @@
 package com.yirong.framework.mapper;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.yirong.framework.entity.Role;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
+
+import java.util.List;
 
 /**
+ * <p>
+  * 用户角色表 Mapper 接口
+ * </p>
+ *
  * @author xn-h
- * @describe(用户角色mapper映射类)
- * @create 2017/7/23
- **/
+ * @since 2017-09-19
+ */
 public interface RoleMapper extends BaseMapper<Role> {
 
+	List<Role> queryRolesByUserName(String userName);
 }

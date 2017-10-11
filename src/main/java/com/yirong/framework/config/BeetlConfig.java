@@ -59,19 +59,21 @@ public class BeetlConfig {
 	
 	private Properties getProperties(){
 		Properties properties = new Properties();
-		if(StrUtil.isBlank(delimiterStatementStart)){
+		if(StrUtil.isNotBlank(delimiterStatementStart)){
 			if(delimiterStatementStart.startsWith("\\")){
                 delimiterStatementStart = delimiterStatementStart.substring(1);
             }
             properties.setProperty("DELIMITER_STATEMENT_START",delimiterStatementStart);
 		}
-		if(StrUtil.isBlank(delimiterStatementEnd)){
+		if(StrUtil.isNotBlank(delimiterStatementEnd)){
 			properties.setProperty("DELIMITER_STATEMENT_END",delimiterStatementEnd);
+		}else{
+			properties.setProperty("DELIMITER_STATEMENT_END","null");
 		}
-		if(StrUtil.isBlank(resourceTagsuffix)){
+		if(StrUtil.isNotBlank(resourceTagsuffix)){
 			properties.setProperty("RESOURCE.tagSuffix",resourceTagsuffix);
 		}
-		if(StrUtil.isBlank(resourceAutoCheck)){
+		if(StrUtil.isNotBlank(resourceAutoCheck)){
 			properties.setProperty("RESOURCE.autoCheck",resourceAutoCheck);
 		}
 		return properties;

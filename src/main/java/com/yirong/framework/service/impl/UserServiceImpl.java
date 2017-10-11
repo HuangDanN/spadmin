@@ -1,5 +1,8 @@
 package com.yirong.framework.service.impl;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.yirong.framework.entity.User;
 import com.yirong.framework.mapper.UserMapper;
 import com.yirong.framework.service.IUserService;
@@ -7,18 +10,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
+ * <p>
+ * 用户表 服务实现类
+ * </p>
+ *
  * @author xn-h
- * @describe(用户业务逻辑实现类)
- * @create 2017/7/26
- **/
+ * @since 2017-09-19
+ */
 @Service
-public class UserServiceImpl implements IUserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
 	@Autowired
-	private UserMapper userMapper;
+	UserMapper userMapper;
 
 	@Override
-	public User selectByUsername(String loginname) {
-		return userMapper.selectByUsername(loginname);
+	public User selectByUsername(String username) {
+		Wrapper<User> wrapper = new EntityWrapper<>();
+		wrapper.eq("LOGINNAME",username);
+		return super.selectOne(wrapper);
 	}
+
 }

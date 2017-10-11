@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yirong.framework.mapper.GroupMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.yirong.framework.entity.Group">
+		<id column="GROUP_ID" property="groupId" />
+		<result column="PARENT_ID" property="parentId" />
+		<result column="GROUP_NAME" property="groupName" />
+		<result column="GROUP_CODE" property="groupCode" />
+		<result column="GROUP_DESC" property="groupDesc" />
+		<result column="IS_DEL" property="isDel" />
+		<result column="IS_ENABLE" property="isEnable" />
+		<result column="CREATE_DATE" property="createDate" />
+		<result column="UPDATE_DATE" property="updateDate" />
+	</resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        GROUP_ID AS groupId, PARENT_ID AS parentId, GROUP_NAME AS groupName, GROUP_CODE AS groupCode, GROUP_DESC AS groupDesc, IS_DEL AS isDel, IS_ENABLE AS isEnable, CREATE_DATE AS createDate, UPDATE_DATE AS updateDate
+    </sql>
+
+</mapper>

@@ -1,45 +1,73 @@
 package com.yirong.framework.entity;
 
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
-
-import javax.validation.constraints.Pattern;
 import java.io.Serializable;
+
 import java.util.Date;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableName;
+import java.io.Serializable;
 
 /**
+ * <p>
+ * 用户角色表
+ * </p>
+ *
  * @author xn-h
- * @describe(用户角色类)
- * @create 2017/7/22
- **/
-public class Role implements Serializable {
+ * @since 2017-10-03
+ */
+@TableName("TSYS_ROLE")
+public class Role extends Model<Role> {
 
-	private static final long serialVersionUID = 3383228538877055193L;
-	//角色ID
-	private java.lang.Long roleId;
-	@NotEmpty(message = "角色名称不能为空")
-	//角色名称
-	private java.lang.String roleName;
-	//角色编码
-	@NotEmpty(message = "角色编码不能为空")
-	@Pattern(regexp = "^(ROLE_)[A-Za-z_]+", message = "角色编码必须以[ ROLE_ ]开头")
-	@Length(max = 200)
-	private java.lang.String roleCode;
-	//创建人
-	private java.lang.Long createrId;
-	//是否系统默认
-	private java.lang.Integer isSys;
-	//是否启用
-	private java.lang.Integer enable;
-	//备注
-	@Length(max = 2000)
-	private java.lang.String note;
-	//创建时间
-	private java.util.Date createDate;
-	//更新时间
-	private java.util.Date updateDate;
-	//权限ID
-	private java.lang.Long authId;
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 角色ID
+     */
+    @TableId("ROLE_ID")
+	private Long roleId;
+    /**
+     * 角色名称
+     */
+	@TableField("ROLE_NAME")
+	private String roleName;
+    /**
+     * 角色编码
+     */
+	@TableField("ROLE_CODE")
+	private String roleCode;
+    /**
+     * 创建者ID
+     */
+	@TableField("CREATER_ID")
+	private Long createrId;
+    /**
+     * 是否系统内置
+     */
+	@TableField("IS_SYS")
+	private Long isSys;
+    /**
+     * 是否有效
+     */
+	@TableField("ENABLE")
+	private Long enable;
+    /**
+     * 备注
+     */
+	@TableField("NOTE")
+	private String note;
+    /**
+     * 创建时间
+     */
+	@TableField("CREATE_DATE")
+	private Date createDate;
+    /**
+     * 更新时间
+     */
+	@TableField("UPDATE_DATE")
+	private Date updateDate;
+
 
 	public Long getRoleId() {
 		return roleId;
@@ -73,19 +101,19 @@ public class Role implements Serializable {
 		this.createrId = createrId;
 	}
 
-	public Integer getIsSys() {
+	public Long getIsSys() {
 		return isSys;
 	}
 
-	public void setIsSys(Integer isSys) {
+	public void setIsSys(Long isSys) {
 		this.isSys = isSys;
 	}
 
-	public Integer getEnable() {
+	public Long getEnable() {
 		return enable;
 	}
 
-	public void setEnable(Integer enable) {
+	public void setEnable(Long enable) {
 		this.enable = enable;
 	}
 
@@ -113,27 +141,23 @@ public class Role implements Serializable {
 		this.updateDate = updateDate;
 	}
 
-	public Long getAuthId() {
-		return authId;
-	}
-
-	public void setAuthId(Long authId) {
-		this.authId = authId;
+	@Override
+	protected Serializable pkVal() {
+		return this.roleId;
 	}
 
 	@Override
 	public String toString() {
 		return "Role{" +
-				"roleId=" + roleId +
-				", roleName='" + roleName + '\'' +
-				", roleCode='" + roleCode + '\'' +
-				", createrId=" + createrId +
-				", isSys=" + isSys +
-				", enable=" + enable +
-				", note='" + note + '\'' +
-				", createDate=" + createDate +
-				", updateDate=" + updateDate +
-				", authId=" + authId +
-				'}';
+			", roleId=" + roleId +
+			", roleName=" + roleName +
+			", roleCode=" + roleCode +
+			", createrId=" + createrId +
+			", isSys=" + isSys +
+			", enable=" + enable +
+			", note=" + note +
+			", createDate=" + createDate +
+			", updateDate=" + updateDate +
+			"}";
 	}
 }

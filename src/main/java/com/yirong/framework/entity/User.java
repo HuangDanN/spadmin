@@ -1,75 +1,110 @@
 package com.yirong.framework.entity;
 
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
-
 import java.io.Serializable;
+
 import java.util.Date;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.annotations.TableLogic;
+import java.io.Serializable;
 
 /**
+ * <p>
+ * 用户表
+ * </p>
+ *
  * @author xn-h
- * @describe(系统用户类)
- * @create 2017/7/21
- **/
-public class User implements Serializable {
+ * @since 2017-10-03
+ */
+@TableName("TSYS_USER")
+public class User extends Model<User> {
 
-	private static final long serialVersionUID = -656450112405823500L;
-	/** 主键 */
-	private java.lang.Long userId;
+    private static final long serialVersionUID = 1L;
 
-	/** 1:系统预置 2:非系统预置 */
-	private java.lang.Integer userType;
+    /**
+     * 用户主键
+     */
+    @TableId("USER_ID")
+	private Long userId;
+    /**
+     * 用户类型  1:系统预置 2:非系统预置
+     */
+	@TableField("USER_TYPE")
+	private Long userType;
+    /**
+     * 用户名
+     */
+	@TableField("LOGINNAME")
+	private String loginname;
+    /**
+     * 用户密码
+     */
+	@TableField("PASSWORD")
+	private String password;
+    /**
+     * 真实姓名
+     */
+	@TableField("REALNAME")
+	private String realname;
+    /**
+     * 手机号码
+     */
+	@TableField("MOBILE")
+	private String mobile;
+    /**
+     * 性别 1:男  2:女
+     */
+	@TableField("SEX")
+	private Long sex;
+    /**
+     * 地址
+     */
+	@TableField("ADDRESS")
+	private String address;
+    /**
+     * 是否启用
+     */
+	@TableField("IS_ENABLE")
+	private Long isEnable;
+    /**
+     * 是否过期
+     */
+	@TableField("IS_EXPIRE")
+	private Long isExpire;
+    /**
+     * 是否密码过期
+     */
+	@TableField("IS_PASSWORD_EXPIRE")
+	private Long isPasswordExpire;
+    /**
+     * 是否锁定
+     */
+	@TableField("IS_LOCK")
+	private Long isLock;
+    /**
+     * 创建时间
+     */
+	@TableField("CREATE_DATE")
+	private Date createDate;
+    /**
+     * 更新时间
+     */
+	@TableField("UPDATE_DATE")
+	private Date updateDate;
+    /**
+     * 备注
+     */
+	@TableField("NOTE")
+	private String note;
+    /**
+     * 删除标志
+     */
+	@TableField("NDELETE")
+    @TableLogic
+	private Long ndelete;
 
-	@NotEmpty(message = "登入名不能为空")
-	@Length(max = 200)
-	/** 用户名 */
-	private java.lang.String loginname;
-
-	@NotEmpty(message = "密码不能为空")
-	@Length(max = 255)
-	/** 用户密码 */
-	private java.lang.String password;
-
-	@Length(max = 255)
-	/** 真实姓名 */
-	private java.lang.String realname;
-
-	@Length(max = 100)
-	/** 手机号码 */
-	private java.lang.String mobile;
-
-	/** 1:男 2:女 */
-	private java.lang.Integer sex;
-
-	@Length(max = 100)
-	/** 地址 */
-	private java.lang.String address;
-
-	/** 是否启用 */
-	private java.lang.Integer isEnable;
-
-	/** 是否过期 */
-	private java.lang.Integer isExpire;
-
-	/** 是否密码过期 */
-	private java.lang.Integer isPasswordExpire;
-
-	/** 是否锁定 */
-	private java.lang.Integer isLock;
-
-	/** 创建时间 */
-	private java.util.Date createDate;
-
-	/** 更新时间 */
-	private java.util.Date updateDate;
-
-	@Length(max = 2000)
-	/** 备注 */
-	private java.lang.String note;
-
-	private Role role;
-
-	private Group group;
 
 	public Long getUserId() {
 		return userId;
@@ -79,11 +114,11 @@ public class User implements Serializable {
 		this.userId = userId;
 	}
 
-	public Integer getUserType() {
+	public Long getUserType() {
 		return userType;
 	}
 
-	public void setUserType(Integer userType) {
+	public void setUserType(Long userType) {
 		this.userType = userType;
 	}
 
@@ -119,11 +154,11 @@ public class User implements Serializable {
 		this.mobile = mobile;
 	}
 
-	public Integer getSex() {
+	public Long getSex() {
 		return sex;
 	}
 
-	public void setSex(Integer sex) {
+	public void setSex(Long sex) {
 		this.sex = sex;
 	}
 
@@ -135,35 +170,35 @@ public class User implements Serializable {
 		this.address = address;
 	}
 
-	public Integer getIsEnable() {
+	public Long getIsEnable() {
 		return isEnable;
 	}
 
-	public void setIsEnable(Integer isEnable) {
+	public void setIsEnable(Long isEnable) {
 		this.isEnable = isEnable;
 	}
 
-	public Integer getIsExpire() {
+	public Long getIsExpire() {
 		return isExpire;
 	}
 
-	public void setIsExpire(Integer isExpire) {
+	public void setIsExpire(Long isExpire) {
 		this.isExpire = isExpire;
 	}
 
-	public Integer getIsPasswordExpire() {
+	public Long getIsPasswordExpire() {
 		return isPasswordExpire;
 	}
 
-	public void setIsPasswordExpire(Integer isPasswordExpire) {
+	public void setIsPasswordExpire(Long isPasswordExpire) {
 		this.isPasswordExpire = isPasswordExpire;
 	}
 
-	public Integer getIsLock() {
+	public Long getIsLock() {
 		return isLock;
 	}
 
-	public void setIsLock(Integer isLock) {
+	public void setIsLock(Long isLock) {
 		this.isLock = isLock;
 	}
 
@@ -191,42 +226,38 @@ public class User implements Serializable {
 		this.note = note;
 	}
 
-	public Role getRole() {
-		return role;
+	public Long getNdelete() {
+		return ndelete;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setNdelete(Long ndelete) {
+		this.ndelete = ndelete;
 	}
 
-	public Group getGroup() {
-		return group;
-	}
-
-	public void setGroup(Group group) {
-		this.group = group;
+	@Override
+	protected Serializable pkVal() {
+		return this.userId;
 	}
 
 	@Override
 	public String toString() {
 		return "User{" +
-				"userId=" + userId +
-				", userType=" + userType +
-				", loginname='" + loginname + '\'' +
-				", password='" + password + '\'' +
-				", realname='" + realname + '\'' +
-				", mobile='" + mobile + '\'' +
-				", sex=" + sex +
-				", address='" + address + '\'' +
-				", isEnable=" + isEnable +
-				", isExpire=" + isExpire +
-				", isPasswordExpire=" + isPasswordExpire +
-				", isLock=" + isLock +
-				", createDate=" + createDate +
-				", updateDate=" + updateDate +
-				", note='" + note + '\'' +
-				", role=" + role +
-				", group=" + group +
-				'}';
+			", userId=" + userId +
+			", userType=" + userType +
+			", loginname=" + loginname +
+			", password=" + password +
+			", realname=" + realname +
+			", mobile=" + mobile +
+			", sex=" + sex +
+			", address=" + address +
+			", isEnable=" + isEnable +
+			", isExpire=" + isExpire +
+			", isPasswordExpire=" + isPasswordExpire +
+			", isLock=" + isLock +
+			", createDate=" + createDate +
+			", updateDate=" + updateDate +
+			", note=" + note +
+			", ndelete=" + ndelete +
+			"}";
 	}
 }

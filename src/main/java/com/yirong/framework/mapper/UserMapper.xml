@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yirong.framework.mapper.UserMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.yirong.framework.entity.User">
+		<id column="USER_ID" property="userId" />
+		<result column="USER_TYPE" property="userType" />
+		<result column="LOGINNAME" property="loginname" />
+		<result column="PASSWORD" property="password" />
+		<result column="REALNAME" property="realname" />
+		<result column="MOBILE" property="mobile" />
+		<result column="SEX" property="sex" />
+		<result column="ADDRESS" property="address" />
+		<result column="IS_ENABLE" property="isEnable" />
+		<result column="IS_EXPIRE" property="isExpire" />
+		<result column="IS_PASSWORD_EXPIRE" property="isPasswordExpire" />
+		<result column="IS_LOCK" property="isLock" />
+		<result column="CREATE_DATE" property="createDate" />
+		<result column="UPDATE_DATE" property="updateDate" />
+		<result column="NOTE" property="note" />
+		<result column="NDELETE" property="ndelete" />
+	</resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        USER_ID AS userId, USER_TYPE AS userType, LOGINNAME AS loginname, PASSWORD AS password, REALNAME AS realname, MOBILE AS mobile, SEX AS sex, ADDRESS AS address, IS_ENABLE AS isEnable, IS_EXPIRE AS isExpire, IS_PASSWORD_EXPIRE AS isPasswordExpire, IS_LOCK AS isLock, CREATE_DATE AS createDate, UPDATE_DATE AS updateDate, NOTE AS note, NDELETE AS ndelete
+    </sql>
+
+</mapper>

@@ -37,6 +37,8 @@ beetl:
   delimiter-statement-end: null
   resource-tagsuffix: tag
   resource-auto-check: true #是否检测文件变化,开发用true合适，但线上要改为false
+  suffix: html
+  webapp_ext:
 
 ###################  spring配置  ###################
 spring:
@@ -44,3 +46,5 @@ spring:
     static-path-pattern: /resources/**
   view:
     prefix: /WEB-INF/template
+
+

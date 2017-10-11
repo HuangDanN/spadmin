@@ -1,12 +1,16 @@
 package com.yirong.framework.mapper;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.yirong.framework.entity.Menu;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
+ * <p>
+  * 后台菜单管理 Mapper 接口
+ * </p>
+ *
  * @author xn-h
- * @describe(菜单mapper映射类)
- * @create 2017/7/23
- **/
+ * @since 2017-09-19
+ */
 public interface MenuMapper extends BaseMapper<Menu> {
+
 }

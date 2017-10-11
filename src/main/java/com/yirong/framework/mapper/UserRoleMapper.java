@@ -1,12 +1,16 @@
 package com.yirong.framework.mapper;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.yirong.framework.entity.UserRole;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
+ * <p>
+  * 用户角色关系表 Mapper 接口
+ * </p>
+ *
  * @author xn-h
- * @describe(用户与角色关系mapper映射类)
- * @create 2017/7/23
- **/
+ * @since 2017-09-19
+ */
 public interface UserRoleMapper extends BaseMapper<UserRole> {
+
 }

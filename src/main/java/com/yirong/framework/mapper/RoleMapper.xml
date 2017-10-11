@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yirong.framework.mapper.RoleMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.yirong.framework.entity.Role">
+		<id column="ROLE_ID" property="roleId" />
+		<result column="ROLE_NAME" property="roleName" />
+		<result column="ROLE_CODE" property="roleCode" />
+		<result column="CREATER_ID" property="createrId" />
+		<result column="IS_SYS" property="isSys" />
+		<result column="ENABLE" property="enable" />
+		<result column="NOTE" property="note" />
+		<result column="CREATE_DATE" property="createDate" />
+		<result column="UPDATE_DATE" property="updateDate" />
+	</resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ROLE_ID AS roleId, ROLE_NAME AS roleName, ROLE_CODE AS roleCode, CREATER_ID AS createrId, IS_SYS AS isSys, ENABLE AS enable, NOTE AS note, CREATE_DATE AS createDate, UPDATE_DATE AS updateDate
+    </sql>
+
+
+	<select id="queryRolesByUserName" resultMap="BaseResultMap" parameterType="java.lang.String">
+		SELECT
+		r.*
+		FROM
+		tsys_role r,
+		tsys_user u,
+		tsys_user_role ur
+		WHERE
+		u.USER_ID = ur.USER_ID
+		AND r.ROLE_ID = ur.ROLE_ID
+		AND u.LOGINNAME = #{userName,jdbcType=VARCHAR}
+		AND u.ndelete=0
+	</select>
+
+</mapper>

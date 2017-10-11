@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yirong.framework.mapper.MenuMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.yirong.framework.entity.Menu">
+		<id column="MENU_ID" property="menuId" />
+		<result column="MENU_NAME" property="menuName" />
+		<result column="PARENT_ID" property="parentId" />
+		<result column="PARENT_NAME" property="parentName" />
+		<result column="MENU_LEVEL" property="menuLevel" />
+		<result column="MENU_URL" property="menuUrl" />
+		<result column="MENU_TYPE" property="menuType" />
+		<result column="OPEN_ICON" property="openIcon" />
+		<result column="CLOSE_ICON" property="closeIcon" />
+		<result column="CREATE_DATE" property="createDate" />
+		<result column="UPDATE_DATE" property="updateDate" />
+		<result column="ENABLE" property="enable" />
+		<result column="NOTE" property="note" />
+		<result column="OPEN_TYPE" property="openType" />
+		<result column="ORDER_NO" property="orderNo" />
+		<result column="TAB_MENU_ID" property="tabMenuId" />
+	</resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        MENU_ID AS menuId, MENU_NAME AS menuName, PARENT_ID AS parentId, PARENT_NAME AS parentName, MENU_LEVEL AS menuLevel, MENU_URL AS menuUrl, MENU_TYPE AS menuType, OPEN_ICON AS openIcon, CLOSE_ICON AS closeIcon, CREATE_DATE AS createDate, UPDATE_DATE AS updateDate, ENABLE AS enable, NOTE AS note, OPEN_TYPE AS openType, ORDER_NO AS orderNo, TAB_MENU_ID AS tabMenuId
+    </sql>
+
+</mapper>

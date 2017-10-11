@@ -1,52 +1,73 @@
 package com.yirong.framework.entity;
 
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
-
 import java.io.Serializable;
+
 import java.util.Date;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableName;
+import java.io.Serializable;
 
 /**
+ * <p>
+ * 组织机构表
+ * </p>
+ *
  * @author xn-h
- * @describe(用户所属组类)
- * @create 2017/7/22
- **/
-public class Group implements Serializable {
-	private static final long serialVersionUID = -6634190285103048705L;
+ * @since 2017-10-03
+ */
+@TableName("TSYS_GROUP")
+public class Group extends Model<Group> {
 
-	//主键ID
-	private java.lang.Long groupId;
+    private static final long serialVersionUID = 1L;
 
-	@NotEmpty
-	@Length(max=500)
-	//组名称
-	private java.lang.String groupName;
+    /**
+     * 组织机构ID
+     */
+    @TableId("GROUP_ID")
+	private Long groupId;
+    /**
+     * 父类ID,当为顶级时PARENT_ID为0
+     */
+	@TableField("PARENT_ID")
+	private Long parentId;
+    /**
+     * 组织机构名称
+     */
+	@TableField("GROUP_NAME")
+	private String groupName;
+    /**
+     * 组织机构编码
+     */
+	@TableField("GROUP_CODE")
+	private String groupCode;
+    /**
+     * 组织机构描述
+     */
+	@TableField("GROUP_DESC")
+	private String groupDesc;
+    /**
+     * 是否删除
+     */
+	@TableField("IS_DEL")
+	private Long isDel;
+    /**
+     * 是否启用
+     */
+	@TableField("IS_ENABLE")
+	private Long isEnable;
+    /**
+     * 创建时间
+     */
+	@TableField("CREATE_DATE")
+	private Date createDate;
+    /**
+     * 更新时间
+     */
+	@TableField("UPDATE_DATE")
+	private Date updateDate;
 
-	@Length(max=500)
-	//组编码
-	private java.lang.String groupCode;
-
-	@Length(max=2000)
-	//组描述
-	private java.lang.String groupDesc;
-
-	//是否启用
-	private java.lang.Integer isEnable;
-
-	//是否删除
-	private java.lang.Integer isDel;
-
-	//创建时间
-	private java.util.Date createDate;
-
-	//更新时间
-	private java.util.Date updateDate;
-
-	//父ID
-	private java.lang.Long parentId;
-
-	//父组名称
-	private java.lang.String parentGroupName;
 
 	public Long getGroupId() {
 		return groupId;
@@ -54,6 +75,14 @@ public class Group implements Serializable {
 
 	public void setGroupId(Long groupId) {
 		this.groupId = groupId;
+	}
+
+	public Long getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
 	}
 
 	public String getGroupName() {
@@ -80,20 +109,20 @@ public class Group implements Serializable {
 		this.groupDesc = groupDesc;
 	}
 
-	public Integer getIsEnable() {
-		return isEnable;
-	}
-
-	public void setIsEnable(Integer isEnable) {
-		this.isEnable = isEnable;
-	}
-
-	public Integer getIsDel() {
+	public Long getIsDel() {
 		return isDel;
 	}
 
-	public void setIsDel(Integer isDel) {
+	public void setIsDel(Long isDel) {
 		this.isDel = isDel;
+	}
+
+	public Long getIsEnable() {
+		return isEnable;
+	}
+
+	public void setIsEnable(Long isEnable) {
+		this.isEnable = isEnable;
 	}
 
 	public Date getCreateDate() {
@@ -112,35 +141,23 @@ public class Group implements Serializable {
 		this.updateDate = updateDate;
 	}
 
-	public Long getParentId() {
-		return parentId;
-	}
-
-	public void setParentId(Long parentId) {
-		this.parentId = parentId;
-	}
-
-	public String getParentGroupName() {
-		return parentGroupName;
-	}
-
-	public void setParentGroupName(String parentGroupName) {
-		this.parentGroupName = parentGroupName;
+	@Override
+	protected Serializable pkVal() {
+		return this.groupId;
 	}
 
 	@Override
 	public String toString() {
 		return "Group{" +
-				"groupId=" + groupId +
-				", groupName='" + groupName + '\'' +
-				", groupCode='" + groupCode + '\'' +
-				", groupDesc='" + groupDesc + '\'' +
-				", isEnable=" + isEnable +
-				", isDel=" + isDel +
-				", createDate=" + createDate +
-				", updateDate=" + updateDate +
-				", parentId=" + parentId +
-				", parentGroupName='" + parentGroupName + '\'' +
-				'}';
+			", groupId=" + groupId +
+			", parentId=" + parentId +
+			", groupName=" + groupName +
+			", groupCode=" + groupCode +
+			", groupDesc=" + groupDesc +
+			", isDel=" + isDel +
+			", isEnable=" + isEnable +
+			", createDate=" + createDate +
+			", updateDate=" + updateDate +
+			"}";
 	}
 }

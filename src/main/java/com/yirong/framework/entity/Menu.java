@@ -1,61 +1,108 @@
 package com.yirong.framework.entity;
 
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
-
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+
 import java.util.Date;
-import java.util.List;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableName;
+import java.io.Serializable;
 
 /**
+ * <p>
+ * 后台菜单管理
+ * </p>
+ *
  * @author xn-h
- * @describe(菜单类)
- * @create 2017/7/22
- **/
-public class Menu implements Serializable {
-	private static final long serialVersionUID = 8549518070399098165L;
+ * @since 2017-10-03
+ */
+@TableName("TSYS_MENU")
+public class Menu extends Model<Menu> {
 
-	//菜单ID
-	private java.lang.Long menuId;
-	@NotEmpty(message="菜单名称不能为空")
-	@Length(max = 100)
-	private java.lang.String menuName;
-	@NotEmpty(message="当前菜单不存在父类菜单")
-	private java.lang.Long parentId;
-	@Length(max = 100)
-	private java.lang.String parentName;
-	@NotNull(message="当前菜单级别不存在")
-	private java.lang.Integer menuLevel;
-	//菜单URL
-	@Length(max = 255)
-	private java.lang.String menuUrl;
-	//菜单类型
-	private java.lang.Integer menuType;
-	//开启菜单icon
-	@Length(max = 255)
-	private java.lang.String openIcon;
-	//关闭菜单icon
-	@Length(max = 255)
-	private java.lang.String closeIcon;
-	//创建时间
-	private java.util.Date createDate;
-	//更新时间
-	private java.util.Date updateDate;
-	//是否启用 默认启用
-	private java.lang.Integer idEnable=1;
-	//备注
-	@Length(max = 500)
-	private java.lang.String note;
-	//打开类型
-	@Length(max = 255)
-	private java.lang.String openType;
-	@NotNull(message="菜单排序不能为空")
-	private java.lang.Long orderNo;
-	//tab菜单ID
-	private java.lang.Long tabMenuId;
-	//子菜单
-	private List<Menu> subMenus;
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 菜单ID
+     */
+    @TableId("MENU_ID")
+	private Long menuId;
+    /**
+     * 菜单名称
+     */
+	@TableField("MENU_NAME")
+	private String menuName;
+    /**
+     * 默认顶级 菜单父类ID：0
+     */
+	@TableField("PARENT_ID")
+	private Long parentId;
+    /**
+     * 父类菜单名称
+     */
+	@TableField("PARENT_NAME")
+	private String parentName;
+    /**
+     * 菜单级别
+     */
+	@TableField("MENU_LEVEL")
+	private Long menuLevel;
+    /**
+     * 菜单地址
+     */
+	@TableField("MENU_URL")
+	private String menuUrl;
+    /**
+     * 菜单类型  1:TAB  2:文件夹  3:URL
+     */
+	@TableField("MENU_TYPE")
+	private Long menuType;
+    /**
+     * 打开图标
+     */
+	@TableField("OPEN_ICON")
+	private String openIcon;
+    /**
+     * 关闭图标
+     */
+	@TableField("CLOSE_ICON")
+	private String closeIcon;
+    /**
+     * 创建时间
+     */
+	@TableField("CREATE_DATE")
+	private Date createDate;
+    /**
+     * 更新时间
+     */
+	@TableField("UPDATE_DATE")
+	private Date updateDate;
+    /**
+     * 是否启用
+     */
+	@TableField("ENABLE")
+	private Long enable;
+    /**
+     * 备注
+     */
+	@TableField("NOTE")
+	private String note;
+    /**
+     * 打开方式  1:内部窗口打开  2:外部新窗口打开
+     */
+	@TableField("OPEN_TYPE")
+	private Long openType;
+    /**
+     * 排序
+     */
+	@TableField("ORDER_NO")
+	private Long orderNo;
+    /**
+     * 标签菜单ID
+     */
+	@TableField("TAB_MENU_ID")
+	private Long tabMenuId;
+
 
 	public Long getMenuId() {
 		return menuId;
@@ -89,11 +136,11 @@ public class Menu implements Serializable {
 		this.parentName = parentName;
 	}
 
-	public Integer getMenuLevel() {
+	public Long getMenuLevel() {
 		return menuLevel;
 	}
 
-	public void setMenuLevel(Integer menuLevel) {
+	public void setMenuLevel(Long menuLevel) {
 		this.menuLevel = menuLevel;
 	}
 
@@ -105,11 +152,11 @@ public class Menu implements Serializable {
 		this.menuUrl = menuUrl;
 	}
 
-	public Integer getMenuType() {
+	public Long getMenuType() {
 		return menuType;
 	}
 
-	public void setMenuType(Integer menuType) {
+	public void setMenuType(Long menuType) {
 		this.menuType = menuType;
 	}
 
@@ -145,12 +192,12 @@ public class Menu implements Serializable {
 		this.updateDate = updateDate;
 	}
 
-	public Integer getIdEnable() {
-		return idEnable;
+	public Long getEnable() {
+		return enable;
 	}
 
-	public void setIdEnable(Integer idEnable) {
-		this.idEnable = idEnable;
+	public void setEnable(Long enable) {
+		this.enable = enable;
 	}
 
 	public String getNote() {
@@ -161,11 +208,11 @@ public class Menu implements Serializable {
 		this.note = note;
 	}
 
-	public String getOpenType() {
+	public Long getOpenType() {
 		return openType;
 	}
 
-	public void setOpenType(String openType) {
+	public void setOpenType(Long openType) {
 		this.openType = openType;
 	}
 
@@ -185,34 +232,30 @@ public class Menu implements Serializable {
 		this.tabMenuId = tabMenuId;
 	}
 
-	public List<Menu> getSubMenus() {
-		return subMenus;
-	}
-
-	public void setSubMenus(List<Menu> subMenus) {
-		this.subMenus = subMenus;
+	@Override
+	protected Serializable pkVal() {
+		return this.menuId;
 	}
 
 	@Override
 	public String toString() {
 		return "Menu{" +
-				"menuId=" + menuId +
-				", menuName='" + menuName + '\'' +
-				", parentId=" + parentId +
-				", parentName='" + parentName + '\'' +
-				", menuLevel=" + menuLevel +
-				", menuUrl='" + menuUrl + '\'' +
-				", menuType=" + menuType +
-				", openIcon='" + openIcon + '\'' +
-				", closeIcon='" + closeIcon + '\'' +
-				", createDate=" + createDate +
-				", updateDate=" + updateDate +
-				", idEnable=" + idEnable +
-				", note='" + note + '\'' +
-				", openType='" + openType + '\'' +
-				", orderNo=" + orderNo +
-				", tabMenuId=" + tabMenuId +
-				", subMenus=" + subMenus +
-				'}';
+			", menuId=" + menuId +
+			", menuName=" + menuName +
+			", parentId=" + parentId +
+			", parentName=" + parentName +
+			", menuLevel=" + menuLevel +
+			", menuUrl=" + menuUrl +
+			", menuType=" + menuType +
+			", openIcon=" + openIcon +
+			", closeIcon=" + closeIcon +
+			", createDate=" + createDate +
+			", updateDate=" + updateDate +
+			", enable=" + enable +
+			", note=" + note +
+			", openType=" + openType +
+			", orderNo=" + orderNo +
+			", tabMenuId=" + tabMenuId +
+			"}";
 	}
 }
